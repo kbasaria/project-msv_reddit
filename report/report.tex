@@ -45,19 +45,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \section{Introduction}
 
-This is a skeleton latex document for you to write your report.
+## 1. Introduction
 
+Sexual violence against men is a significant yet understudied public health concern. Despite its physical and psychological consequences, male sexual victimization remains underrecognized in research, policy, and service provision. Societal expectations surrounding masculinity, including emotional stoicism, strength, and self-reliance, may discourage male survivors from acknowledging their experiences, disclosing victimization, or seeking support. Consequently, many survivors encounter barriers to accessing appropriate resources and services.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Online communities provide alternative spaces where individuals can anonymously share experiences, seek advice, and exchange social support. Reddit, in particular, offers a valuable source of naturally occurring textual data through which researchers can examine discussions of sensitive or stigmatized experiences. However, the large volume and unstructured nature of user-generated content present challenges for systematic analysis. Natural language processing (NLP) and machine learning offer computational methods for identifying, categorizing, and analyzing relevant information within these discussions.
+
+This project applies supervised machine learning to classify posts from r/MenGetRapedToo, a Reddit community dedicated to discussions of male sexual victimization. Using a corpus of approximately 2,960 English-language posts, the primary objective is to develop and evaluate binary text classification models that distinguish first-person survivor narratives from other community discussions. By comparing the performance of different classification algorithms, this project seeks to identify an effective approach for automatically detecting survivor narratives within online discussions. The resulting classifier may facilitate future research examining disclosure, help-seeking, and experiences of sexual violence among male survivors.
 
 \section{Related Work}
 
-Citations within the text appear in parentheses as~\citep{aho1972theory} or, if the author's name appears in the text itself, as \citet{andrew2007scalable}.
+## 2. Related Work
 
+Previous research has demonstrated the utility of online communities for examining experiences of abuse, sexual violence, and help-seeking. Lanthier et al. (2023) analyzed Reddit narratives to investigate intersectional sexual assault stigma and disclosure to formal support providers, while Abavi et al. (2020) examined online survivor discourse surrounding help-seeking. Although these studies demonstrate the value of online narratives for understanding survivors' experiences, their qualitative approaches do not directly address the automated identification of survivor narratives within larger text collections. More recently, Ashkenazi et al. (2026) compared traditional machine learning and transformer-based NLP classifiers for identifying psychological abuse in Reddit posts. Their work provides a particularly relevant methodological precedent for applying supervised text classification to discussions of interpersonal violence.
 
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+Advances in transformer-based language models have further expanded the capabilities of supervised text classification. Devlin et al. (2019) introduced Bidirectional Encoder Representations from Transformers (BERT), which learns contextual representations of language through bidirectional pretraining. Liu et al. (2019) subsequently introduced RoBERTa, an optimized approach to BERT pretraining that demonstrated improvements across several NLP benchmarks. These architectures provide a methodological foundation for evaluating contextual language representations in the classification of survivor narratives. Building on this literature, the present project investigates the identification of first-person sexual violence survivor narratives within Reddit posts, addressing a classification task distinct from the identification of psychological abuse or the qualitative examination of survivor experiences.
 
 \section{Methods}
 
