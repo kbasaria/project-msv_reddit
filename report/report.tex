@@ -30,24 +30,23 @@
 \title{Identifying Sexual Violence Survivor Narratives in Reddit Posts Using Natural Language Processing}
 
 \author{Kashif Basaria, MPH \\
-  Tulane University / New Orleans. LA \\
-  \texttt{email@domain} \\\And
+  Tulane University, New Orleans, LA \\
+  \texttt{kbasaria@tulane.edu}
   }
 
 \date{}
 
 \begin{document}
+\setlength{\parskip}{0pt}
 \maketitle
 \begin{abstract}
 
-%% [insert abstract]
+Sexual violence against men remains an understudied public health concern, with stigma and societal expectations surrounding masculinity potentially discouraging disclosure and help-seeking. Online communities such as Reddit provide spaces for survivors to share their experiences, but the volume and unstructured nature of these discussions present challenges for systematic analysis. This project applies natural language processing (NLP) to identify first-person sexual violence survivor narratives in posts from r/MenGetRapedToo. Following data preprocessing, a corpus of 2,960 English-language posts was retained, of which 580 were manually annotated for binary classification. A baseline classifier combining term frequency-inverse document frequency (TF-IDF) features with logistic regression was evaluated using five-fold stratified cross-validation. Preliminary results demonstrated a mean ROC-AUC of 0.929, accuracy of 0.796, precision of 0.788, recall of 0.997, and F1-score of 0.880. Although these findings suggest promising discriminative performance, the near-perfect recall and comparatively lower precision warrant further investigation of minority-class performance. Subsequent work will focus on baseline model optimization, fine-tuning BERT and RoBERTa, and comparing classification performance on held-out test data. This project aims to establish an effective computational approach for identifying survivor narratives to support future research on male sexual victimization and help-seeking.
 
 \end{abstract}
 
 
 \section{Introduction}
-
-## 1. Introduction
 
 Sexual violence against men is a significant yet understudied public health concern. Despite its physical and psychological consequences, male sexual victimization remains underrecognized in research, policy, and service provision. Societal expectations surrounding masculinity, including emotional stoicism, strength, and self-reliance, may discourage male survivors from acknowledging their experiences, disclosing victimization, or seeking support. Consequently, many survivors encounter barriers to accessing appropriate resources and services.
 
@@ -57,39 +56,63 @@ This project applies supervised machine learning to classify posts from r/MenGet
 
 \section{Related Work}
 
-## 2. Related Work
-
-
-\section{Related Work}
-
 Previous research has demonstrated the utility of online communities for examining experiences of abuse, sexual violence, and help-seeking. \citet{lanthierComingOutCloset2023a} analyzed Reddit narratives to investigate intersectional sexual assault stigma and disclosure to formal support providers, while \citet{abaviExplorationSexualAssault2020} examined online survivor discourse surrounding help-seeking. Although these studies demonstrate the value of online narratives for understanding survivors' experiences, their qualitative approaches do not directly address automated identification of survivor narratives. More recently, \citet{ashkenaziDecodingPsychologicalAbuse2026} compared NLP classification approaches for identifying psychological abuse in Reddit posts, providing a relevant methodological precedent.
 
 Advances in transformer-based language models have expanded the capabilities of supervised text classification. \citet{devlin-etal-2019-bert} introduced BERT, which learns bidirectional contextual representations of language. \citet{liuRoBERTaRobustlyOptimized2019a} subsequently introduced RoBERTa, an optimized approach to BERT pretraining. These architectures provide a foundation for evaluating contextual language representations in survivor narrative classification. Building on this literature, the present project investigates the identification of first-person sexual violence survivor narratives within Reddit posts.
 
 \section{Methods}
 
-## Methods
+\subsection{Data Collection and Preprocessing}
 
-Data were obtained from r/MenGetRapedToo, a Reddit community focused on male sexual victimization. The initial dataset contained 4,463 submissions and 135 metadata variables. Data cleaning was performed using Python and pandas. Posts with empty or unavailable body text, including Reddit's [deleted] and [removed] placeholders, were excluded. The remaining submissions were examined for duplicate identifiers and textual duplication. Duplicate-text groups were inspected before conservative deduplication, and additional preprocessing was conducted to establish the final candidate corpus of 2,960 English-language posts. Each post was represented using its title and body text.
+Data were obtained from r/MenGetRapedToo, a Reddit community focused on male sexual victimization. The original dataset contained 4,463 submissions and 135 variables. Data cleaning was conducted using Python and pandas. An audit of post availability identified 400 blank bodies, 542 \texttt{[deleted]} posts, and 533 \texttt{[removed]} posts. Following the removal of submissions without usable body text, 2,988 posts remained. Subsequent preprocessing and language filtering produced a final corpus of 2,960 English-language posts.
 
-A reproducible random sample of 500 posts was drawn for manual survivor-narrative annotation using a fixed random seed. Initial annotation identified 422 survivor narratives (84.4\%) and 78 non-survivor narratives (15.6\%), indicating substantial class imbalance. To obtain additional examples of the minority class, a supplemental random sample of 200 previously unsampled posts was drawn and retained separately.
+\subsection{Data Annotation}
 
-The project uses supervised machine learning to distinguish survivor narratives from other Reddit posts. Human-assigned binary labels serve as the reference standard for model development and evaluation. The planned modeling approach compares conventional text classification methods with transformer-based language models. Conventional classifiers provide baseline approaches for evaluating the predictive utility of lexical text representations, while BERT and RoBERTa offer contextual language representations that may capture more complex linguistic patterns.
+Posts were manually annotated to identify first-person survivor narratives. Each post was assigned a binary label indicating whether the text described the author's own experience of sexual victimization (1) or represented other content (0). An initial random sample was supplemented with additional observations to increase representation of the minority class. The resulting annotated dataset consisted of 580 posts, including 437 survivor narratives (75.3\%) and 143 non-survivor narratives (24.7\%).
 
-Model development and evaluation will use Python-based NLP and machine learning libraries. The labeled dataset will be divided into training and held-out test subsets, with model selection and tuning conducted without using the held-out test data. Performance will be evaluated using precision, recall, F1 score, and confusion matrices, with particular attention to the minority class. Accuracy alone may be misleading because survivor narratives substantially outnumber non-survivor narratives in the initial sample. Comparisons across models will assess whether more complex approaches provide meaningful improvements over simpler baselines.
+The annotated dataset was divided into training (70\%) and held-out test (30\%) subsets using stratified random sampling. The training dataset contained 406 posts, while the held-out test dataset contained 174 posts. A fixed random seed of 42 was used to ensure reproducibility.
+
+\subsection{Baseline Model Development}
+
+A baseline binary classifier was implemented using term frequency-inverse document frequency (TF-IDF) features and logistic regression. TF-IDF converts text into numerical representations by weighting terms according to their frequency within individual documents and their relative rarity across the corpus. Unigram features were extracted using \texttt{TfidfVectorizer}, and logistic regression was implemented using scikit-learn with a maximum of 1,000 iterations.
+
+Model performance was assessed using five-fold stratified cross-validation on the training dataset. During each iteration, the classifier was trained on four folds and evaluated on the remaining fold, preserving the relative distribution of survivor narratives and non-narrative posts. Performance was summarized using mean accuracy, precision, recall, F1-score, and ROC-AUC, with standard deviations calculated across folds. The held-out test dataset was reserved for final model evaluation.
 
 
 \section{Results}
 
-The initial phase of the project focused on data preparation, annotation sampling, and identifying challenges for subsequent model development. Preprocessing reduced the original collection of 4,463 Reddit submissions to a finalized candidate corpus of 2,960 posts. All retained posts have unique submission identifiers and usable textual content. Preliminary annotation revealed substantial class imbalance, with 84.4\% of the initial 500-post sample labeled as survivor narratives and 15.6\% labeled as other content. This imbalance is an important consideration for model development because classifiers may achieve relatively high overall accuracy while performing poorly at identifying non-survivor narratives. To address this limitation, an additional 200-post sample was drawn from submissions not included in the initial annotation sample. This provides an opportunity to identify additional minority-class examples while preserving the original random sample.
+The baseline TF-IDF and logistic regression classifier demonstrated strong discriminative performance, achieving a mean ROC-AUC of 0.929 across five-fold stratified cross-validation. As shown in \hyperref[tab:baseline_cv]{Table~\ref*{tab:baseline_cv}}, the classifier also achieved a mean accuracy of 0.796, precision of 0.788, recall of 0.997, and F1-score of 0.880.
 
+\begin{table}[!ht]
+\centering
+\small
+\begin{tabular}{lc}
+\hline
+\textbf{Metric} & \textbf{Mean (SD)} \\
+\hline
+Accuracy  & 0.796 (0.009) \\
+Precision & 0.788 (0.009) \\
+Recall    & 0.997 (0.007) \\
+F1-score  & 0.880 (0.004) \\
+ROC-AUC   & 0.929 (0.031) \\
+\hline
+\end{tabular}
+\caption{Five-fold stratified cross-validation performance of the baseline TF-IDF and logistic regression classifier on the training dataset ($n=406$). Values represent mean performance and standard deviation across folds.}
+\label{tab:baseline_cv}
+\end{table}
+
+Although the high ROC-AUC indicates promising discriminative ability, the near-perfect recall suggests that the classifier may favor predicting survivor narratives over non-narrative posts. This pattern is particularly relevant given the imbalance in the annotated dataset, in which survivor narratives constitute approximately three-quarters of observations. The comparatively lower precision suggests that some non-narrative posts may be incorrectly classified as survivor narratives. These preliminary findings establish a benchmark for subsequent model development. Further evaluation will investigate minority-class performance and determine whether model optimization and transformer-based approaches improve classification across both classes.
 
 \section{Division of Labor}
 This is an individual project. The author is responsible for data collection and preprocessing, development of the annotation procedures, manual annotation, model implementation, performance evaluation, and preparation of the final report.
 
 
 \section{Remaining Timeline}
-The remaining project activities include finalizing the labeled dataset, implementing baseline classifiers, training and evaluating transformer-based models, and comparing classification performance across approaches. The next phase will focus on completing model development and evaluation, followed by error analysis and preparation of the final report. Particular attention will be given to class imbalance, false-positive and false-negative predictions, and the relative performance of conventional and transformer-based classification approaches.
+The remaining project activities will focus on model optimization, transformer fine-tuning, comparative evaluation, and preparation of the final report. First, the TF-IDF and logistic regression baseline will be optimized through hyperparameter tuning and investigation of class weighting and decision thresholds. Additional evaluation metrics, including specificity and balanced accuracy, will be incorporated to assess performance on the minority class. 
+
+Next, pretrained BERT and RoBERTa models will be fine-tuned using the annotated training dataset. Their performance will be compared with the optimized baseline using consistent evaluation procedures. 
+
+Finally, model performance will be assessed on the held-out test dataset, followed by confusion matrix analysis and examination of false-positive and false-negative predictions. The final report will summarize comparative model performance, methodological limitations, and implications for identifying survivor narratives in online discussions for further research exploring gendered ideologies of help-seeking among survivors.
 
 
 \bibliography{references}
