@@ -1,0 +1,9 @@
+# Identifying Sexual Violence Survivor Narratives in Reddit Posts Using NLP
+
+**CMPS 6730 · NLP Course Project**
+
+Comparing TF-IDF logistic regression, BERT, and RoBERTa
+
+Kashif Basaria, MPH · Tulane University
+
+**Goal:** Identify first-person survivor narratives for subsequent research—not classify the experiences described within them.

@@ -1,0 +1,12 @@
+## The Classification Problem
+
+Online forums contain firsthand disclosures alongside advice, commentary, news, and other discussion.
+
+**Binary task:** Classify each Reddit post as either:
+
+- **First-person survivor narrative** (positive)
+- **Non-narrative** (negative)
+
+**Why sensitivity matters:** A false negative removes a potentially relevant survivor account from the research corpus.
+
+**Selection goal:** Sensitivity ≥ 0.95; then maximize specificity.

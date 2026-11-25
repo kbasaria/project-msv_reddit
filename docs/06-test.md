@@ -1,0 +1,20 @@
+## Final RoBERTa: Independent Test
+
+**Threshold = 0.32 · n = 174**
+
+| Metric | Result |
+|:--|--:|
+| **Sensitivity** | **95.4%** |
+| **Specificity** | **83.7%** |
+| **Accuracy** | **92.5%** |
+| F1-score | .951 |
+| ROC-AUC | .962 |
+
+**Confusion matrix (reference × prediction):**
+
+| | Predicted narrative | Predicted other |
+|:--|--:|--:|
+| Actual narrative | **125** | 6 |
+| Actual other | 7 | **36** |
+
+Six survivor narratives missed; seven non-narratives incorrectly retained.
