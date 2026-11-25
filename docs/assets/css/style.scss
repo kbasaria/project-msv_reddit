@@ -1,3 +1,4 @@
+
 ---
 # Jekyll front matter
 ---
@@ -155,13 +156,4 @@
 
 .reveal .confusion .bad {
   background: #fff0e7;
-}
-
-/* Override the original dark theme background */
-html,
-body,
-.reveal,
-.reveal .backgrounds,
-.reveal .slide-background {
-  background-color: #ffffff !important;
 }
