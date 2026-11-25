@@ -1,40 +1,167 @@
+---
+# Jekyll front matter
+---
 
-/* Force custom title slide appearance */
+@import "solarized/solarized.scss";
 
-html:has(.custom-title-slide.present),
-body:has(.custom-title-slide.present),
-.reveal:has(.custom-title-slide.present) {
-  background: #ffffff !important;
+/* Presentation-wide design */
+.reveal {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #12263c;
 }
 
-.reveal .slides section:has(.custom-title-slide) {
-  background: #ffffff !important;
-  color: #14283f !important;
-  text-align: left !important;
+.reveal .slides {
+  text-align: left;
 }
 
-.reveal .slides .custom-title-slide,
-.reveal .slides .custom-title-slide * {
-  text-align: left !important;
+.reveal .slides section {
+  background: #ffffff;
+  color: #12263c;
+  box-sizing: border-box;
+  padding: 35px 45px;
+  text-align: left;
 }
 
-.reveal .slides .custom-title-slide h1 {
-  color: #14283f !important;
-  font-size: 65px !important;
-  font-weight: 800 !important;
-  line-height: 1.12 !important;
-  text-shadow: none !important;
+.reveal h1 {
+  font-size: 1.9em;
+  color: #12263c;
+  line-height: 1.14;
+  text-shadow: none;
+  text-align: left;
 }
 
-.reveal .slides .custom-title-slide .course-label {
-  color: #126a9e !important;
-  font-weight: 700 !important;
-  letter-spacing: 3px !important;
+.reveal h2 {
+  font-size: 1.25em;
+  color: #12263c;
+  text-align: left;
 }
 
-.reveal .slides .custom-title-slide .goal-box {
-  background: #e8f3f9 !important;
-  border-left: 5px solid #1675a7 !important;
-  padding: 16px 20px !important;
-  color: #14283f !important;
+.reveal p,
+.reveal li {
+  font-size: 0.65em;
+  line-height: 1.35;
+}
+
+.reveal strong {
+  color: #176a9b;
+}
+
+.reveal .eyebrow {
+  font-size: 0.38em;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #176a9b;
+  font-weight: 700;
+}
+
+.reveal .highlight {
+  background: #e9f3f9;
+  border-left: 5px solid #176a9b;
+  padding: 0.45em 0.6em;
+  margin-top: 0.6em;
+  font-size: 0.65em;
+}
+
+.reveal .small {
+  font-size: 0.43em;
+  color: #516274;
+}
+
+.reveal .two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}
+
+.reveal .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.3em;
+  align-items: center;
+}
+
+.reveal .metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45em;
+}
+
+.reveal .metric {
+  background: #eef5fa;
+  border-radius: 12px;
+  padding: 0.5em;
+  text-align: center;
+}
+
+.reveal .metric b {
+  display: block;
+  font-size: 1.05em;
+  color: #176a9b;
+}
+
+.reveal .metric span {
+  font-size: 0.42em;
+  color: #516274;
+}
+
+.reveal table {
+  font-size: 0.48em;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reveal th {
+  background: #12263c;
+  color: white;
+}
+
+.reveal th,
+.reveal td {
+  padding: 0.52em 0.65em;
+  border-bottom: 1px solid #dce5ec;
+}
+
+.reveal .step {
+  display: inline-block;
+  background: #eef5fa;
+  padding: 0.5em 0.7em;
+  border-radius: 9px;
+  font-size: 0.55em;
+}
+
+.reveal .arrow {
+  font-size: 0.65em;
+  color: #176a9b;
+}
+
+.reveal .confusion {
+  width: 80%;
+  margin: auto;
+}
+
+.reveal .confusion td,
+.reveal .confusion th {
+  text-align: center;
+}
+
+.reveal .confusion td {
+  font-size: 1.35em;
+  padding: 0.8em;
+}
+
+.reveal .confusion .good {
+  background: #e4f3ed;
+}
+
+.reveal .confusion .bad {
+  background: #fff0e7;
+}
+
+/* Override the original dark theme background */
+html,
+body,
+.reveal,
+.reveal .backgrounds,
+.reveal .slide-background {
+  background-color: #ffffff !important;
 }
