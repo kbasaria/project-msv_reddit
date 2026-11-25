@@ -1,3 +1,7 @@
+---
+layout: slide
+title: ""
+---
 ## CONCLUSIONS & NEXT STEPS
 
 **Key finding:** Transformer-based NLP models effectively distinguished first-person survivor narratives from other Reddit discussions. Under the sensitivity-first screening criterion, **RoBERTa** was selected.
