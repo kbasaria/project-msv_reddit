@@ -3,3 +3,28 @@
 ---
 
 @import "solarized/solarized.scss";
+/* Improve presentation readability */
+
+.reveal .slides section {
+  width: 100%;
+  text-align: left;
+}
+
+.reveal .slides section p,
+.reveal .slides section li {
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.reveal .slides section table {
+  font-size: 0.8em;
+  width: 100%;
+}
+
+.reveal .slides section h2 {
+  font-size: 1.5em;
+}
+
+.reveal .slides section h3 {
+  font-size: 1.2em;
+}
