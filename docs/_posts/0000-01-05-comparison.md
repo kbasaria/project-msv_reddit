@@ -1,4 +1,4 @@
-## Cross-Validation Model Comparison
+## CROSS-VALIDATION MODEL COMPARISON
 
 | Model (5-fold CV) | Accuracy | Sensitivity | Specificity | ROC-AUC |
 |:--|--:|--:|--:|--:|
